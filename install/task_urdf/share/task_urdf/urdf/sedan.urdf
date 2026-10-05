@@ -1,0 +1,180 @@
+<robot name="ugv_sedan">
+<!--
+ ===================== PROPERTIES ===================== 
+-->
+<xacro:property name="PI" value="3.14159265359"/>
+<!-- Chassis (lower body) -->
+<xacro:property name="chassis_l" value="2.0"/>
+<xacro:property name="chassis_w" value="0.8"/>
+<xacro:property name="chassis_h" value="0.3"/>
+<xacro:property name="chassis_m" value="20.0"/>
+<!-- Cabin (upper body) -->
+<xacro:property name="cabin_l" value="1.0"/>
+<xacro:property name="cabin_w" value="0.76"/>
+<xacro:property name="cabin_h" value="0.25"/>
+<xacro:property name="cabin_m" value="5.0"/>
+<xacro:property name="cabin_x" value="-0.1"/>
+<!-- Wheels (spheres) -->
+<xacro:property name="wheel_r" value="0.18"/>
+<xacro:property name="wheel_m" value="1.5"/>
+<xacro:property name="wheel_x" value="0.65"/>
+<xacro:property name="wheel_y" value="0.60"/>
+<!-- Lights (thin discs) -->
+<xacro:property name="light_r" value="0.06"/>
+<xacro:property name="light_t" value="0.02"/>
+<xacro:property name="light_m" value="0.05"/>
+<xacro:property name="light_y" value="0.28"/>
+<!-- Ground clearance: chassis bottom above ground -->
+<xacro:property name="clearance" value="0.10"/>
+<!-- base_link (chassis center) height above ground -->
+<xacro:property name="base_z" value="${clearance + chassis_h/2}"/>
+<!--
+ ===================== MATERIALS ===================== 
+-->
+<material name="body_blue">
+<color rgba="0.1 0.3 0.8 1.0"/>
+</material>
+<material name="cabin_grey">
+<color rgba="0.6 0.7 0.8 1.0"/>
+</material>
+<material name="wheel_black">
+<color rgba="0.1 0.1 0.1 1.0"/>
+</material>
+<material name="light_white">
+<color rgba="1.0 1.0 0.8 1.0"/>
+</material>
+<material name="light_red">
+<color rgba="0.9 0.05 0.05 1.0"/>
+</material>
+<!--
+ ===================== INERTIA MACROS ===================== 
+-->
+<xacro:macro name="box_inertia" params="m x y z">
+<inertial>
+<mass value="${m}"/>
+<inertia ixx="${m/12.0*(y*y+z*z)}" ixy="0" ixz="0" iyy="${m/12.0*(x*x+z*z)}" iyz="0" izz="${m/12.0*(x*x+y*y)}"/>
+</inertial>
+</xacro:macro>
+<xacro:macro name="sphere_inertia" params="m r">
+<inertial>
+<mass value="${m}"/>
+<inertia ixx="${2.0/5.0*m*r*r}" ixy="0" ixz="0" iyy="${2.0/5.0*m*r*r}" iyz="0" izz="${2.0/5.0*m*r*r}"/>
+</inertial>
+</xacro:macro>
+<!--
+ Cylinder inertia with its axis along the link's X (disc facing front/back) 
+-->
+<xacro:macro name="disc_x_inertia" params="m r h">
+<inertial>
+<mass value="${m}"/>
+<inertia ixx="${m*r*r/2.0}" ixy="0" ixz="0" iyy="${m/12.0*(3*r*r+h*h)}" iyz="0" izz="${m/12.0*(3*r*r+h*h)}"/>
+</inertial>
+</xacro:macro>
+<!--
+ ===================== LINKS & JOINTS ===================== 
+-->
+<!-- Ground reference frame -->
+<link name="base_footprint"/>
+<!-- Chassis -->
+<link name="base_link">
+<visual>
+<geometry>
+<box size="${chassis_l} ${chassis_w} ${chassis_h}"/>
+</geometry>
+<material name="body_blue"/>
+</visual>
+<collision>
+<geometry>
+<box size="${chassis_l} ${chassis_w} ${chassis_h}"/>
+</geometry>
+</collision>
+<xacro:box_inertia m="${chassis_m}" x="${chassis_l}" y="${chassis_w}" z="${chassis_h}"/>
+</link>
+<joint name="base_footprint_joint" type="fixed">
+<parent link="base_footprint"/>
+<child link="base_link"/>
+<origin xyz="0 0 ${base_z}" rpy="0 0 0"/>
+</joint>
+<!-- Cabin (sits on top of chassis) -->
+<link name="cabin_link">
+<visual>
+<geometry>
+<box size="${cabin_l} ${cabin_w} ${cabin_h}"/>
+</geometry>
+<material name="cabin_grey"/>
+</visual>
+<collision>
+<geometry>
+<box size="${cabin_l} ${cabin_w} ${cabin_h}"/>
+</geometry>
+</collision>
+<xacro:box_inertia m="${cabin_m}" x="${cabin_l}" y="${cabin_w}" z="${cabin_h}"/>
+</link>
+<joint name="cabin_joint" type="fixed">
+<parent link="base_link"/>
+<child link="cabin_link"/>
+<origin xyz="${cabin_x} 0 ${chassis_h/2 + cabin_h/2}" rpy="0 0 0"/>
+</joint>
+<!--
+ Wheel macro: spheres on continuous joints rotating about Y 
+-->
+<xacro:macro name="wheel" params="name x y">
+<link name="${name}_wheel_link">
+<visual>
+<geometry>
+<sphere radius="${wheel_r}"/>
+</geometry>
+<material name="wheel_black"/>
+</visual>
+<collision>
+<geometry>
+<sphere radius="${wheel_r}"/>
+</geometry>
+</collision>
+<xacro:sphere_inertia m="${wheel_m}" r="${wheel_r}"/>
+</link>
+<joint name="${name}_wheel_joint" type="continuous">
+<parent link="base_link"/>
+<child link="${name}_wheel_link"/>
+<!-- wheel center sits at z = wheel_r above ground -->
+<origin xyz="${x} ${y} ${wheel_r - base_z}" rpy="0 0 0"/>
+<axis xyz="0 1 0"/>
+<dynamics damping="0.05" friction="0.01"/>
+</joint>
+</xacro:macro>
+<xacro:wheel name="front_left" x="${wheel_x}" y="${wheel_y}"/>
+<xacro:wheel name="front_right" x="${wheel_x}" y="${-wheel_y}"/>
+<xacro:wheel name="rear_left" x="${-wheel_x}" y="${wheel_y}"/>
+<xacro:wheel name="rear_right" x="${-wheel_x}" y="${-wheel_y}"/>
+<!--
+ Light macro: thin disc, axis along X, fixed to chassis 
+-->
+<xacro:macro name="light" params="name x y material">
+<link name="${name}_light_link">
+<visual>
+<origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+<geometry>
+<cylinder radius="${light_r}" length="${light_t}"/>
+</geometry>
+<material name="${material}"/>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+<geometry>
+<cylinder radius="${light_r}" length="${light_t}"/>
+</geometry>
+</collision>
+<xacro:disc_x_inertia m="${light_m}" r="${light_r}" h="${light_t}"/>
+</link>
+<joint name="${name}_light_joint" type="fixed">
+<parent link="base_link"/>
+<child link="${name}_light_link"/>
+<origin xyz="${x} ${y} 0.03" rpy="0 0 0"/>
+</joint>
+</xacro:macro>
+<xacro:property name="light_x" value="${chassis_l/2 + light_t/2}"/>
+<xacro:light name="front_left" x="${light_x}" y="${light_y}" material="light_white"/>
+<xacro:light name="front_right" x="${light_x}" y="${-light_y}" material="light_white"/>
+<xacro:light name="rear_left" x="${-light_x}" y="${light_y}" material="light_red"/>
+<xacro:light name="rear_right" x="${-light_x}" y="${-light_y}" material="light_red"/>
+</robot>

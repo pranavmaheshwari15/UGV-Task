@@ -1,0 +1,17 @@
+[0.558s] Invoking command in '/home/pranavmaheshwari15/task_ws/build/task_urdf': PYTHONPATH=/home/pranavmaheshwari15/task_ws/build/task_urdf/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pranavmaheshwari15/task_ws/install/task_urdf/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/pranavmaheshwari15/task_ws/build/task_urdf/build --no-deps symlink_data
+[0.714s] running develop
+[0.795s] running egg_info
+[0.795s] writing task_urdf.egg-info/PKG-INFO
+[0.796s] writing dependency_links to task_urdf.egg-info/dependency_links.txt
+[0.796s] writing entry points to task_urdf.egg-info/entry_points.txt
+[0.796s] writing requirements to task_urdf.egg-info/requires.txt
+[0.796s] writing top-level names to task_urdf.egg-info/top_level.txt
+[0.796s] reading manifest file 'task_urdf.egg-info/SOURCES.txt'
+[0.797s] writing manifest file 'task_urdf.egg-info/SOURCES.txt'
+[0.797s] running build_ext
+[0.798s] Creating /home/pranavmaheshwari15/task_ws/install/task_urdf/lib/python3.10/site-packages/task-urdf.egg-link (link to .)
+[0.798s] Installing state_publisher script to /home/pranavmaheshwari15/task_ws/install/task_urdf/lib/task_urdf
+[0.798s] 
+[0.799s] Installed /home/pranavmaheshwari15/task_ws/build/task_urdf
+[0.799s] running symlink_data
+[0.817s] Invoked command in '/home/pranavmaheshwari15/task_ws/build/task_urdf' returned '0': PYTHONPATH=/home/pranavmaheshwari15/task_ws/build/task_urdf/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pranavmaheshwari15/task_ws/install/task_urdf/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/pranavmaheshwari15/task_ws/build/task_urdf/build --no-deps symlink_data

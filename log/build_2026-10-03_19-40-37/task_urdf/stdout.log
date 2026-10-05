@@ -1,0 +1,20 @@
+running egg_info
+writing ../../build/task_urdf/task_urdf.egg-info/PKG-INFO
+writing dependency_links to ../../build/task_urdf/task_urdf.egg-info/dependency_links.txt
+writing entry points to ../../build/task_urdf/task_urdf.egg-info/entry_points.txt
+writing requirements to ../../build/task_urdf/task_urdf.egg-info/requires.txt
+writing top-level names to ../../build/task_urdf/task_urdf.egg-info/top_level.txt
+reading manifest file '../../build/task_urdf/task_urdf.egg-info/SOURCES.txt'
+writing manifest file '../../build/task_urdf/task_urdf.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+copying launch/gazebo.launch.py -> /home/pranavmaheshwari15/task_ws/install/task_urdf/share/task_urdf/launch
+copying rviz/ugv_config.rviz -> /home/pranavmaheshwari15/task_ws/install/task_urdf/share/task_urdf/rviz
+running install_egg_info
+removing '/home/pranavmaheshwari15/task_ws/install/task_urdf/lib/python3.10/site-packages/task_urdf-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/task_urdf/task_urdf.egg-info to /home/pranavmaheshwari15/task_ws/install/task_urdf/lib/python3.10/site-packages/task_urdf-0.0.0-py3.10.egg-info
+running install_scripts
+writing list of installed files to '/home/pranavmaheshwari15/task_ws/build/task_urdf/install.log'

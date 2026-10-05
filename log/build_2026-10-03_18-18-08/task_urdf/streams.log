@@ -1,0 +1,19 @@
+[0.571s] Invoking command in '/home/pranavmaheshwari15/task_ws/build/task_urdf': PYTHONPATH=/home/pranavmaheshwari15/task_ws/build/task_urdf/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pranavmaheshwari15/task_ws/install/task_urdf/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/pranavmaheshwari15/task_ws/build/task_urdf/build --no-deps symlink_data
+[0.730s] running develop
+[0.812s] running egg_info
+[0.812s] writing task_urdf.egg-info/PKG-INFO
+[0.812s] writing dependency_links to task_urdf.egg-info/dependency_links.txt
+[0.812s] writing entry points to task_urdf.egg-info/entry_points.txt
+[0.812s] writing requirements to task_urdf.egg-info/requires.txt
+[0.812s] writing top-level names to task_urdf.egg-info/top_level.txt
+[0.813s] reading manifest file 'task_urdf.egg-info/SOURCES.txt'
+[0.813s] writing manifest file 'task_urdf.egg-info/SOURCES.txt'
+[0.814s] running build_ext
+[0.814s] Creating /home/pranavmaheshwari15/task_ws/install/task_urdf/lib/python3.10/site-packages/task-urdf.egg-link (link to .)
+[0.814s] 
+[0.815s] Installed /home/pranavmaheshwari15/task_ws/build/task_urdf
+[0.815s] running symlink_data
+[0.815s] creating /home/pranavmaheshwari15/task_ws/install/task_urdf/share/task_urdf/config
+[0.815s] symbolically linking /home/pranavmaheshwari15/task_ws/build/task_urdf/config/controller.yaml -> /home/pranavmaheshwari15/task_ws/install/task_urdf/share/task_urdf/config
+[0.815s] creating /home/pranavmaheshwari15/task_ws/install/task_urdf/share/task_urdf/rviz
+[0.834s] Invoked command in '/home/pranavmaheshwari15/task_ws/build/task_urdf' returned '0': PYTHONPATH=/home/pranavmaheshwari15/task_ws/build/task_urdf/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pranavmaheshwari15/task_ws/install/task_urdf/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/pranavmaheshwari15/task_ws/build/task_urdf/build --no-deps symlink_data

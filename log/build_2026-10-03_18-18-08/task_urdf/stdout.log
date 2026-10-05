@@ -1,0 +1,17 @@
+running develop
+running egg_info
+writing task_urdf.egg-info/PKG-INFO
+writing dependency_links to task_urdf.egg-info/dependency_links.txt
+writing entry points to task_urdf.egg-info/entry_points.txt
+writing requirements to task_urdf.egg-info/requires.txt
+writing top-level names to task_urdf.egg-info/top_level.txt
+reading manifest file 'task_urdf.egg-info/SOURCES.txt'
+writing manifest file 'task_urdf.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/pranavmaheshwari15/task_ws/install/task_urdf/lib/python3.10/site-packages/task-urdf.egg-link (link to .)
+
+Installed /home/pranavmaheshwari15/task_ws/build/task_urdf
+running symlink_data
+creating /home/pranavmaheshwari15/task_ws/install/task_urdf/share/task_urdf/config
+symbolically linking /home/pranavmaheshwari15/task_ws/build/task_urdf/config/controller.yaml -> /home/pranavmaheshwari15/task_ws/install/task_urdf/share/task_urdf/config
+creating /home/pranavmaheshwari15/task_ws/install/task_urdf/share/task_urdf/rviz
